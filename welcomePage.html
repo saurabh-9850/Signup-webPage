@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome page</title>
+</head>
+<style>
+    header {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        background-image: url('https://media.istockphoto.com/photos/interior-of-an-empty-modern-loft-office-open-space-picture-id1300804870?b=1&k=20&m=1300804870&s=170667a&w=0&h=o_L52CLtdYbLWTc1S1Xz9VkoH577QFk-YRP6R0XFF8I=');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+        
+    }
+    header div{
+      height: 50%; 
+      background: white; 
+      backdrop-filter: blur(11px) saturate(93%);
+    -webkit-backdrop-filter: blur(11px) saturate(93%);
+    background-color: rgba(255, 255, 255, 0.94);
+    border-radius: 12px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
+    padding: 30px;
+    }
+    #user {
+        color: red;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <header>
+        <div>
+        <h2> Hello, <span id="user">user</span> <br> Thank you very much for signing up!! </h2>
+    </div>
+    </header>
+
+
+    <script>
+        
+         
+        setTimeout("preventBack()", 0);
+        var user = sessionStorage.getItem("username");
+        document.getElementById("user").innerHTML = user;
+        
+    </script>
+</body>
+
+</html>

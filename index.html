@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="Style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div id="login-page-container">
+        <div>
+
+
+            <form action="buffer.html" onsubmit="return validate()" name="signup-form">
+
+
+
+                <h1>Sign Up Here</h1>
+
+
+                <li>
+                    <div class="icon-input">
+                        <i class="fa fa-envelope icon"></i>
+
+                        <input type="email" placeholder="Enter Email &#42;" id="email" name="email" class="width-form"
+                            required>
+                    </div>
+                    <div id="mail-div" class="empty"></div>
+
+                </li>
+
+
+                <li>
+                    <div class="icon-input">
+                        <i class="fa fa-user icon"></i>
+                        <input type="text" id="Username" placeholder="Enter username &#42;" name="username"
+                            class="width-form" required>
+                    </div>
+                    <div id="username-div" class="empty"></div>
+                </li>
+
+
+                <li>
+
+                    <div class="icon-input">
+                        <i class="fa fa-key icon"></i>
+                        <input type="password" id="pwd1" name="pwd1" placeholder="Enter your password &#42;"
+                            class="width-form" pattern="(?=.*\</div>*[a-z])(?=.*[A-Z]).{8,}"
+                            title="in at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                            required>
+                    </div>
+                    <div id="pwd1-div" class="empty"></div>
+
+                </li>
+
+
+                <li>
+
+                    <div class="icon-input">
+                        <i class="fa fa-key icon"></i>
+                        <input type="password" id="pwd2" name="pwd2" placeholder="Confirm password &#42;"
+                            class="width-form" required>
+                    </div>
+                    <div id="pwd2-div" class="empty"></div>
+                </li>
+
+
+                <li>
+                    <div class="icon-input">
+                        <i class="fa fa-phone icon"></i>
+                        <input type="tel" name="ph_number" id="ph_number" placeholder="phone no &#42;"
+                            class="width-form" required>
+                    </div>
+                    <div id="tel-div" class="empty"></div>
+
+                </li>
+
+
+                <li id="terms-li">
+                    <input type="checkbox" name="terms" id="terms" checked required>
+                    <p>I agree to the terms and conditions as set out by the user agreement.</p>
+                </li>
+
+
+                <li id="submit-li">
+                    <input type="submit" value="Sign up" id="submit-btn" onclick="redirect()" class="width-form">
+                </li>
+                <p>Do you have an Account? <a href="#"> Login Now!</a></p>
+
+
+
+
+
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script>
+        function displayError(id, message) {
+            // displays why validation failed.
+
+            document.getElementById(id).innerHTML = message;
+        }
+
+
+
+        function validate() {
+            var flag = true;
+            clearAllMessages();
+            //username validation 
+            var username = document.getElementById("Username").value;
+            // var nameRegex = /^[a-zA-Z0-9]+$/;
+            var nameRegex = /^[a-zA-Z0-9_]+$/;
+            var validuser = document.getElementById("Username").value.match(nameRegex)
+            if (username.length <= 6 || username.length >= 20) {
+                displayError("username-div", "*Username length should be between 6 to 20");
+                flag = false;
+            }
+            else if (validuser == null) {
+                displayError("username-div", "*Please use only letters , numbers and underscores ");
+                flag = false;
+            }
+
+
+            //password validation
+            var pass = document.getElementById("pwd1").value;
+            var cpass = document.getElementById("pwd2").value;
+            if (pass.length >= 18 || pass.length <= 8) {
+                displayError("pwd1-div", "*length should be between 8 to 18");
+                flag = false;
+            }
+            else if (pass != cpass) {
+                displayError("pwd2-div", "*Password doesn't match");
+                flag = false;
+            }
+            else if (username == pass) {
+                displayError("pwd2-div", "*you shouldn’t use the same username and password");
+                flag = false;
+            }
+
+
+
+
+
+
+            //ph number validation
+            var ph = document.getElementById("ph_number").value;
+            var NumRegex = /^(0|[1-9]\d*)$/;
+            var ValidNo = document.getElementById("ph_number").value.match(NumRegex);
+            if (ph.length != 10) {
+                displayError("tel-div", "*Incorrect phone number");
+                return false;
+            }
+            else if (ValidNo == null) {
+                displayError("tel-div", "*Only numbers allowed");
+                flag = false;
+            }
+            var Username = document.getElementById("Username").value;
+
+
+            sessionStorage.setItem("username", Username);
+
+
+
+
+
+            return flag;
+
+
+        }
+
+
+
+
+        function clearAllMessages() {
+            var collect = document.getElementsByClassName("empty");
+
+            for (let i = 0; i < 5; i++) {
+                document.getElementsByClassName("empty")[i].innerHTML = "";
+            }
+        }
+
+
+    </script>
+    <script type="text/javascript">
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+    </script>
+</body>
+
+</html>
